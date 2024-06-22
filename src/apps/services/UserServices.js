@@ -9,12 +9,15 @@ class UserServices
 
     async verifyUserByEmail (email){
 
+        console.log(email)
+
         const user = await Users.findOne({where:{email:email}});
 
-
-        if (!user) {
-            throw new Error('User not found');
+        
+        if (user) {
+            throw new Error('User already created');
         }
+        
 
         return user;
     }    
@@ -34,16 +37,13 @@ class UserServices
 
     async createUser(userData){
 
-
+        
         const verify = this.verifyUserByEmail(userData.email);
-
-        console.log(verify);
 
         const user = await Users.create(userData);
 
-        if(!user){
-            throw new Error('Failed in create user');
-        }
+        
+
 
     }
 
@@ -53,10 +53,6 @@ class UserServices
         
 
         const user = await this.verifyUserById(userId);
-
-        if(!user){
-            throw new Error('User not found');
-        }
 
         let encryptedPassword = '';
 
@@ -133,7 +129,7 @@ class UserServices
             },
         });
 
-        console.log(user);
+        
 
 
         if(!user){
