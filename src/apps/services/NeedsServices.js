@@ -1,7 +1,7 @@
 const { where, Model } = require('sequelize');
-const Needs = require('../models/Needs');
+const Needs = require('../models/needs');
 const Institution = require('../models/instituition');
-const DonationsTypes = require('../models/DonationTypes');
+const DonationsTypes = require('../models/donationTypes');
 
 
 class NeedsServices{

@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const Users = require('../models/Users');
+const Users = require('../models/users');
 const { encrypt } = require('../../utils/crypt');
 
 class AuthService {

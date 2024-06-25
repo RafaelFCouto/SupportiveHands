@@ -1,5 +1,5 @@
 const { where } = require('sequelize');
-const DonationTypes = require('../models/DonationTypes');
+const DonationTypes = require('../models/donationTypes');
 
 
 
