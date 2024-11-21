@@ -28,7 +28,7 @@ routes.get('/health-db', async (req, res) => {
     } catch (error) {
       res.status(500).json({ status: 'ERROR', message: 'Database connection failed', error: error.message });
     }
-  });
+});
 
 //Routes for Register and login, don't require auth
 routes.post('/users/create', UserController.createUser);
