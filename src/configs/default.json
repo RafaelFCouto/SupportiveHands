@@ -1,7 +1,7 @@
 {
     "PORT": 3001,
     "DIALECT": "mysql",
-    "HOST": "dbsupportivehands.c3ei2ymqays2.us-east-1.rds.amazonaws.com",
+    "HOST": "db",
     "DB_USERNAME": "admin",
     "PASSWORD": "TeuRsqvuYEFu28tnLjA5",
     "DATABASE": "dbsupportivehands",

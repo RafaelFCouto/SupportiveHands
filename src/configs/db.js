@@ -2,7 +2,7 @@ const config = require('./default.json');
 
 module.exports={
     dialect: config.DIALECT || 'mysql',
-    host: config.HOST,
+    host: config.HOST || 'db',
     username: config.DB_USERNAME,
     password:config.PASSWORD,
     database:config.DATABASE,

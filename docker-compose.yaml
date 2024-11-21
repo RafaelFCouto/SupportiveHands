@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./src/Dockerfile
+    container_name: supportivehands-app
+    environment:
+      - NODE_ENV=development
+      - PORT=3001
+      - DIALECT=mysql
+      - HOST=db
+      - DB_USERNAME=admin
+      - PASSWORD=TeuRsqvuYEFu28tnLjA5
+      - DATABASE=dbsupportivehands
+      - DB_PORT=3306
+      - HASH_BCRYPT=dcee57ceb0b251443b2b1c74f9f64187
+      - EXPIRE_IN=7d
+      - SECRET_CRYPTO=d543e5107aa5f7495ea395bc0f7868b0
+    volumes:
+      - .:/app
+    ports:
+      - "3001:3001"
+    depends_on:
+      - db
+    networks:
+      - supportivehands-network
+
+  db:
+    image: mysql:8.0
+    container_name: supportivehands-db
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin
+      - MYSQL_DATABASE=dbsupportivehands
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=TeuRsqvuYEFu28tnLjA5
+    ports:
+      - "3306:3306"
+    networks:
+      - supportivehands-network
+
+networks:
+  supportivehands-network:
+    driver: bridge

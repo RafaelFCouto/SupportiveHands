@@ -6,13 +6,29 @@ const AuthController = require('./apps/controllers/AuthControllers');
 const DonationTypesController = require('./apps/controllers/DonationTypesControllers');
 const InstitutionController = require('./apps/controllers/InstitutionControllers');
 const NeedsController = require('./apps/controllers/NeedsControllers');
+const database = require('./database/index');
 
 
 const routes = new Router();
 //Health
 routes.get('/health', (req,res)=>{
-    return res.send({message:'Connected with success!'});
+    try{
+        return res.send({message:'Connected with success!'});
+    }
+    catch (error) {
+        res.status(500).json({ status: 'ERROR', message: 'App connection failed', error: error.message });
+      }
 });
+
+routes.get('/health-db', async (req, res) => {
+    try {
+      const sequelize = database.getConnection();
+      await sequelize.authenticate();
+      res.status(200).json({ status: 'OK', message: 'Database connection is healthy!' });
+    } catch (error) {
+      res.status(500).json({ status: 'ERROR', message: 'Database connection failed', error: error.message });
+    }
+  });
 
 //Routes for Register and login, don't require auth
 routes.post('/users/create', UserController.createUser);
