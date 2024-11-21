@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
-    "supportive-hands-db:migrate:dev": "sequelize-cli db:migrate --config ./src/configs/db.js --migrations-path ./src/database/migrations"
+    "supportive-hands-db:migrate:dev": "sequelize-cli db:migrate --config ./src/configs/db.js --migrations-path ./src/database/migrations",
+    "test": "jest --runInBand",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -18,7 +20,9 @@
     "sequelize": "^6.37.3"
   },
   "devDependencies": {
+    "jest": "^29.7.0",
     "nodemon": "^3.1.0",
-    "sequelize-cli": "^6.6.2"
+    "sequelize-cli": "^6.6.2",
+    "supertest": "^7.0.0"
   }
 }
