@@ -1,10 +1,7 @@
 const { where } = require('sequelize');
-const DonationTypes = require('../models/donationTypes');
-
-
+const DonationTypes = require('../models/DonationTypes');
 
 class DonationTypesService{
-
 
     async verifyDonationTypes(id){
         const donationTypes = await DonationTypes.findOne({
@@ -18,7 +15,6 @@ class DonationTypesService{
         }
 
         return donationTypes;
-
     }
 
     async listAllDonationTypes(){
@@ -33,9 +29,6 @@ class DonationTypesService{
         return all;
     }
 
-
-
-
     async createDonationTypes(data){
         const create = await DonationTypes.create(data);
 
@@ -44,22 +37,18 @@ class DonationTypesService{
         }
     }
 
-
     async updateDonationType(data, id){
 
         const update = await DonationTypes.update(data, id);
-            
+
         if(!update){
             throw new Error('Failed in updated DonationType');
         }
-
     }
-
 
     async deleteDonationType(id){
 
         const donationType = await this.verifyDonationTypes(id);
-
 
         const deleted = await DonationTypes.destroy({
             where:{
@@ -70,15 +59,7 @@ class DonationTypesService{
         if(!deleted){
             throw new Error('Failed in deleted DonationType');
         }
-
     }
-
-
-        
-    
-
-
 }
-
 
 module.exports = new DonationTypesService();

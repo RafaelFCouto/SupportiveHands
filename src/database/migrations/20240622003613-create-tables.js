@@ -34,7 +34,6 @@ module.exports = {
       },
     });
 
-
     await queryInterface.createTable('donationstypes', {
       id:{
         allowNull:false,
@@ -134,7 +133,6 @@ module.exports = {
         allowNull:false,
       },
     });
-    
   },
 
   async down (queryInterface, Sequelize) {
@@ -143,6 +141,6 @@ module.exports = {
     await queryInterface.dropTable('donationstypes');
     await queryInterface.dropTable('needs');
     await queryInterface.dropTable('institutions');
-    
+
   }
 };

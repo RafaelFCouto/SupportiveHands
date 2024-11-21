@@ -1,7 +1,6 @@
 const Sequelize = require('sequelize');
 const {Model} = require('sequelize');
 
-
 class Institution extends Model{
     static init (sequelize){
         super.init(
@@ -19,14 +18,12 @@ class Institution extends Model{
             {
                 sequelize,
                 modelName: 'Institution',
-                tableName: 'institutions', 
+                tableName: 'institutions',
             },
         );
-        
+
         return this;
     }
-
 }
-
 
 module.exports=Institution;

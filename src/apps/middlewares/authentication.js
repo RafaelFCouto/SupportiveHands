@@ -1,8 +1,6 @@
 const {decryptedToken} = require('../../utils/token');
 const {decrypt} = require('../../utils/crypt');
 
-
-
 const verifyJwt = async (req, res, next)=>{
     const authHeader = req.headers.authorization;
 

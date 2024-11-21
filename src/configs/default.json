@@ -1,0 +1,12 @@
+{
+    "PORT": 3001,
+    "DIALECT": "mysql",
+    "HOST": "dbsupportivehands.c3ei2ymqays2.us-east-1.rds.amazonaws.com",
+    "DB_USERNAME": "admin",
+    "PASSWORD": "TeuRsqvuYEFu28tnLjA5",
+    "DATABASE": "dbsupportivehands",
+    "DB_PORT": 3306,
+    "HASH_BCRYPT": "dcee57ceb0b251443b2b1c74f9f64187",
+    "EXPIRE_IN": "7d",
+    "SECRET_CRYPTO": "d543e5107aa5f7495ea395bc0f7868b0"
+}

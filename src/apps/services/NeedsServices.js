@@ -1,11 +1,9 @@
 const { where, Model } = require('sequelize');
-const Needs = require('../models/needs');
-const Institution = require('../models/instituition');
-const DonationsTypes = require('../models/donationTypes');
-
+const Needs = require('../models/Needs');
+const Institution = require('../models/Instituition');
+const DonationsTypes = require('../models/DonationTypes');
 
 class NeedsServices{
-
     async getNeeds(id){
         const needs = await Needs.findOne({
             attributes: ['id', 'name', 'quantity'],
@@ -20,21 +18,20 @@ class NeedsServices{
                     attributes: ['cnpj', 'name']
                 },
                 {
-                    model:DonationsTypes,  
-                    as: 'donationType',  
+                    model:DonationsTypes,
+                    as: 'donationType',
                     required: true,
                     attributes: ['name']
                 }
             ]
         });
-    
+
         if (!needs) {
             throw new Error('Needs Not Found');
         }
-    
+
         return needs;
     }
-
 
     async getAllNeeds(){
 
@@ -61,11 +58,7 @@ class NeedsServices{
         }
 
         return allNeeds;
-
-
-
     }
-
 
     async createNeeds(data){
         const create = await Needs.create(data);
@@ -74,7 +67,6 @@ class NeedsServices{
             throw new Error('Failed in create needs');
         }
     }
-
 
     async updateNeeds(data, id){
         console.log(id);
@@ -94,7 +86,6 @@ class NeedsServices{
         }
     }
 
-
     async deleteNeeds(id){
         const need = await Needs.findOne({
             where:{
@@ -108,19 +99,10 @@ class NeedsServices{
             }
         })
 
-        
         if(!deleted){
             throw new Error('Failed in deleted Needs');
         }
-
-
     }
-
-
-
-
-
 }
-
 
 module.exports = new NeedsServices();

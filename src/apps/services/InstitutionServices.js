@@ -1,10 +1,7 @@
-
 const { where } = require('sequelize');
-const Institution = require('../models/instituition');
-
+const Institution = require('../models/Instituition');
 
 class InstitutionService{
-
 
     async getInsitution(id){
         const instituition = await Institution.findOne({
@@ -20,21 +17,18 @@ class InstitutionService{
         return instituition;
     }
 
-
     async listAllInstitution() {
 
         const allInstitutions = await Institution.findAll({
             attributes: ['name', 'beneficiaries', 'vacancies']
         });
-    
+
         if (!allInstitutions || allInstitutions.length === 0) {
             throw new Error('Instituições não encontradas');
         }
-    
+
         return allInstitutions;
     }
-
-
 
     async createInsitution(data){
 
@@ -42,12 +36,9 @@ class InstitutionService{
         if(!create){
             throw new Error('Failed in create Institution');
         }
-
     }
 
-
     async updateInstitution(data, id){
-
 
         const instituition = await this.getInsitution(id);
 
@@ -58,10 +49,9 @@ class InstitutionService{
         }
     }
 
-
     async deleteInsitution(id){
         const instituition = await this.getInsitution(id);
-        
+
         const deleted = await Institution.destroy({
             where:{
                 id:id,
@@ -72,10 +62,6 @@ class InstitutionService{
             throw new Error('Failed in deleted Intitution');
         }
     }
-
-
-
-
 }
 
 module.exports = new InstitutionService();

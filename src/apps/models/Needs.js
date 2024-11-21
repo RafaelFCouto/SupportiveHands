@@ -1,7 +1,5 @@
-
 const Sequelize = require('sequelize');
 const {Model} = require('sequelize');
-
 
 class Needs extends Model{
     static init (sequelize){
@@ -15,18 +13,16 @@ class Needs extends Model{
             {
                 sequelize,
                 modelName: 'Needs',
-                tableName: 'needs', 
+                tableName: 'needs',
             },
         );
-        
+
         return this;
     }
     static associate(models){
         this.belongsTo(models.Institution,{foreignKey: 'institution_id', as: 'institution'});
         this.belongsTo(models.DonationTypes,{foreignKey: 'donation_type_id', as: 'donationType'});
     }
-
 }
-
 
 module.exports=Needs;

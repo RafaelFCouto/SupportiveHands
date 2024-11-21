@@ -1,19 +1,15 @@
-require('dotenv').config();
-
-
-
+const config = require('./default.json');
 
 module.exports={
-    dialect: process.env.DIALECT,
-    host: process.env.HOST,
-    username: process.env.DB_USERNAME,
-    password:process.env.PASSWORD,
-    database:process.env.DATABASE,
-    port:process.env.DB_PORT,
+    dialect: config.DIALECT || 'mysql',
+    host: config.HOST,
+    username: config.DB_USERNAME,
+    password:config.PASSWORD,
+    database:config.DATABASE,
+    port:config.DB_PORT,
     define:{
         timestamps:true,
         underscored:true,
         underscoredAll:true
     },
-
 };

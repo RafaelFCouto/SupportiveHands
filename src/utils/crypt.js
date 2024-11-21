@@ -1,9 +1,8 @@
+const config = require('../configs/default.json');
 const crypto = require('crypto');
-
-const algorithm = 'aes-256-cbc';
-
-const secretKey = process.env.SECRET_CRYPTO;
 const iv = crypto.randomBytes(16);
+const secretKey = config.SECRET_CRYPTO;
+const algorithm = 'aes-256-cbc';
 
 const encrypt = (text) => {
     const cipher = crypto.createCipheriv(algorithm, secretKey, iv);
@@ -27,9 +26,7 @@ const decrypt = (hash) => {
     );
 
     return decrypted.toString();
-
 }
-
 
 module.exports = {
     encrypt,

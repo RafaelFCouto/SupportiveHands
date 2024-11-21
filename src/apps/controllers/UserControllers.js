@@ -1,6 +1,4 @@
-
 const UserService = require('../services/UserServices');
-
 
 class UserController{
 
@@ -21,8 +19,6 @@ class UserController{
     async createUser(req,res){
         try {
 
-            
-
             const createUser = await UserService.createUser(req.body);
             const user = req.body;
 
@@ -37,8 +33,6 @@ class UserController{
         try {
 
             const userId = req.userId;
-            console.log(userId);
-
             const user = await UserService.updateUser(req.body,userId);
 
             res.status(200).json({ message: 'User Updated' });
@@ -52,7 +46,6 @@ class UserController{
         try {
 
             const userId = req.userId;
-
             const deleteUser = await UserService.deleteUser(req.body, userId);
 
             res.status(200).json({ message: 'User Deleted' });
@@ -61,15 +54,6 @@ class UserController{
             return res.status(401).json({ error: error.message });
         }
     }
-
-
-   
-    
-
-
-
-
-
 }
 
 module.exports = new UserController();
