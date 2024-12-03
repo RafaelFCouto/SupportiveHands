@@ -3,12 +3,12 @@ const joi = require('joi');
 
 const authSchema = Joi.object({
     email: Joi.string()
-        .email()
-        .required()
-        .message({
-            'string.email': 'E-mail is not valid',
-            'any.required': 'E-mail is required'
-        }),
+    .email()
+    .required()
+    .messages({
+      'string.email': 'O login deve ser um e-mail válido.',
+      'any.required': 'O campo login é obrigatório.',
+    }),
 });
 
 module.exports = authSchema;
