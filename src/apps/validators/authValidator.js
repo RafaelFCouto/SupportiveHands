@@ -1,5 +1,4 @@
 const Joi = require('joi');
-const joi = require('joi');
 
 const authSchema = Joi.object({
     email: Joi.string()
@@ -9,6 +8,8 @@ const authSchema = Joi.object({
       'string.email': 'O login deve ser um e-mail válido.',
       'any.required': 'O campo login é obrigatório.',
     }),
+    password: Joi.string()
+    .required()
 });
 
 module.exports = authSchema;
