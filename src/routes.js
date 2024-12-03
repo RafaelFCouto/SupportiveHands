@@ -8,6 +8,8 @@ const InstitutionController = require('./apps/controllers/InstitutionControllers
 const NeedsController = require('./apps/controllers/NeedsControllers');
 const database = require('./database/index');
 
+const ValidateMiddleware = require('./apps/middlewares/validate-middleware');
+const authSchema = require('./apps/validators/authValidator');
 
 const routes = new Router();
 //Health
@@ -32,7 +34,7 @@ routes.get('/health-db', async (req, res) => {
 
 //Routes for Register and login, don't require auth
 routes.post('/users/create', UserController.createUser);
-routes.post('/auth', AuthController.authenticate);
+routes.post('/auth', ValidateMiddleware(authSchema), AuthController.authenticate);
 //Middleware for Auth, all routes bellow this Middleware require JWT auth
 routes.use(AuthMiddleware);
 
