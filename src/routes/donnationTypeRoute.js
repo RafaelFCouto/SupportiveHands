@@ -8,9 +8,10 @@ const router = Router();
 
 router.use(AuthMiddleware);
 
-routes.get('/donationTypes/:id', DonationTypesController.listDonationTypesById);
-routes.get('/donationTypes/listAll', DonationTypesController.listAllDonationTypes);
-routes.post('/donationTypes/create', ValidateMiddleware(createDonnationTypeSchema), DonationTypesController.createDonationType);
-routes.put('/donationTypes/update/:id', ValidateMiddleware(updateDonnationTypechema), DonationTypesController.updateDonationType);
-routes.delete('/donationTypes/delete/:id', DonationTypesController.deleteDonationTypes);
+router.get('/:id', DonationTypesController.listDonationTypesById);
+router.get('/listAll', DonationTypesController.listAllDonationTypes);
+router.post('/create', ValidateMiddleware(createDonnationTypeSchema), DonationTypesController.createDonationType);
+router.put('/update/:id', ValidateMiddleware(updateDonnationTypechema), DonationTypesController.updateDonationType);
+router.delete('/delete/:id', DonationTypesController.deleteDonationTypes);
+
 module.exports = router;

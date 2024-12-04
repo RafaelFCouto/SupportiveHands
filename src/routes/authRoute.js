@@ -5,6 +5,6 @@ const authSchema = require('../apps/validators/authValidator');
 
 const router = Router();
 
-router.post('/auth', ValidateMiddleware(authSchema), AuthController.authenticate);
+router.post('/', ValidateMiddleware(authSchema), AuthController.authenticate);
 
 module.exports = router;

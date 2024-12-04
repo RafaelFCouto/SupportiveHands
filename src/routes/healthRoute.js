@@ -3,7 +3,7 @@ const database = require('./database/index');
 
 const router = Router();
 
-router.get('/health', (req,res)=>{
+router.get('/', (req,res)=>{
     try{
         return res.send({message:'Connected with success!'});
     }
@@ -12,7 +12,7 @@ router.get('/health', (req,res)=>{
       }
 });
 
-router.get('/health-db', async (req, res) => {
+router.get('/db', async (req, res) => {
     try {
       const sequelize = database.getConnection();
       await sequelize.authenticate();

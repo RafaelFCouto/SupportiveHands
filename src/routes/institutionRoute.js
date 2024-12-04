@@ -8,10 +8,10 @@ const router = Router();
 
 router.use(AuthMiddleware);
 
-routes.get('/institutions/:id', InstitutionController.listInstitutionById);
-routes.get('/getAllInstitutions', InstitutionController.listAllInstitutions);
-routes.post('/institutions/create', ValidateMiddleware(createInstitutionSchema), InstitutionController.createInstitution);
-routes.put('/institutions/update/:id', ValidateMiddleware(updateInstitutionSchema), InstitutionController.updateInsitution);
-routes.delete('/institutions/delete/:id', InstitutionController.deleteInstitution);
+router.get('/:id', InstitutionController.listInstitutionById);
+router.get('/getAllInstitutions', InstitutionController.listAllInstitutions);
+router.post('/create', ValidateMiddleware(createInstitutionSchema), InstitutionController.createInstitution);
+router.put('/update/:id', ValidateMiddleware(updateInstitutionSchema), InstitutionController.updateInsitution);
+router.delete('/delete/:id', InstitutionController.deleteInstitution);
 
 module.exports = router;
