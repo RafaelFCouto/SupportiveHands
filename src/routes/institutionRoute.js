@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const ValidateMiddleware = require('../apps/middlewares/validate-middleware');
-const createInstitutionSchema = require('../apps/validators/needs-validators/createNeedsValidator');
-const updateInstitutionSchema = require('../apps/validators/needs-validators/updateNeedsValidator');
+const createInstitutionSchema = require('../apps/validators//institution-validators/createInstitutionValidator');
+const updateInstitutionSchema = require('../apps/validators/institution-validators/updateInsititutionValidator');
 const AuthMiddleware = require('../apps/middlewares/authentication');
 
 const router = Router();
