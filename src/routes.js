@@ -1,15 +1,25 @@
 const{Router} = require('express');
 
 const AuthMiddleware = require('./apps/middlewares/authentication');
-const UserController = require('./apps/controllers/UserControllers');
+const ValidateMiddleware = require('./apps/middlewares/validate-middleware');
+
 const AuthController = require('./apps/controllers/AuthControllers');
+const AuthValidator = require('./apps/validators/authValidator');
+
+const UserController = require('./apps/controllers/UserControllers');
+const UserValidator = require('./apps/validators/user-validators/userValidator');
+
 const DonationTypesController = require('./apps/controllers/DonationTypesControllers');
+const DonationTypesValidator = require('./apps/validators/donnation-type-validators/donnationTypeValidator');
+
 const InstitutionController = require('./apps/controllers/InstitutionControllers');
+const InstitutionValidator = require('./apps/validators/institution-validators/institutionValidator');
+
 const NeedsController = require('./apps/controllers/NeedsControllers');
+const NeedsValidator = require('./apps/validators/needs-validators/needsValidator');
+
 const database = require('./database/index');
 
-const ValidateMiddleware = require('./apps/middlewares/validate-middleware');
-const authSchema = require('./apps/validators/authValidator');
 
 const routes = new Router();
 //Health
@@ -33,35 +43,35 @@ routes.get('/health-db', async (req, res) => {
 });
 
 //Routes for Register and login, don't require auth
-routes.post('/users/create', UserController.createUser);
-routes.post('/auth', ValidateMiddleware(authSchema), AuthController.authenticate);
+routes.post('/users/create', ValidateMiddleware(UserValidator.createUser), UserController.createUser);
+routes.post('/auth', ValidateMiddleware(AuthValidator), AuthController.authenticate);
 //Middleware for Auth, all routes bellow this Middleware require JWT auth
 routes.use(AuthMiddleware);
 
 //Routes for Users
-routes.put('/users/update', UserController.updateUser);
+routes.put('/users/update', ValidateMiddleware(UserValidator.updateUserSchema), UserController.updateUser);
 routes.delete('/users/delete', UserController.deleteUser);
-routes.get('/users', UserController.listUser);
+routes.get('/users',ValidateMiddleware(UserValidator.getUserSchema), UserController.listUser);
 
 //Routes for Donations Type
-routes.post('/donationTypes/create', DonationTypesController.createDonationType);
-routes.put('/donationTypes/update/:id', DonationTypesController.updateDonationType);
+routes.post('/donationTypes/create', ValidateMiddleware(DonationTypesValidator.createDonnationTypeSchema), DonationTypesController.createDonationType);
+routes.put('/donationTypes/update/:id', ValidateMiddleware(DonationTypesValidator.updateDonnationTypeSchema), DonationTypesController.updateDonationType);
 routes.get('/donationTypes/listAll', DonationTypesController.listAllDonationTypes);
-routes.get('/donationTypes/:id', DonationTypesController.listDonationTypesById);
+routes.get('/donationTypes/:id', ValidateMiddleware(DonationTypesValidator.getDonnationTypeSchema), DonationTypesController.listDonationTypesById);
 routes.delete('/donationTypes/delete/:id', DonationTypesController.deleteDonationTypes);
 
 //Routes for institutions
+routes.post('/institutions/create', ValidateMiddleware(InstitutionValidator.createInstitutionSchema), InstitutionController.createInstitution);
+routes.put('/institutions/update/:id', ValidateMiddleware(InstitutionValidator.updateInstitutionSchema), InstitutionController.updateInsitution);
 routes.get('/institutions/:id', InstitutionController.listInstitutionById);
 routes.get('/getAllInstitutions', InstitutionController.listAllInstitutions);
-routes.post('/institutions/create', InstitutionController.createInstitution);
-routes.put('/institutions/update/:id', InstitutionController.updateInsitution);
 routes.delete('/institutions/delete/:id', InstitutionController.deleteInstitution);
 
 //Routes for needs
-routes.get('/needs/:id', NeedsController.listNeedById);
+routes.post('/needs/create', ValidateMiddleware(NeedsValidator.createNeedsSchema), NeedsController.createNeeds);
+routes.put('/needs/update/:id', ValidateMiddleware(NeedsValidator.createNeedsSchema), NeedsController.updateNeed);
+routes.get('/needs/:id', ValidateMiddleware(NeedsValidator.getNeedsSchema), NeedsController.listNeedById);
 routes.get('/getAllNeeds', NeedsController.listAllNeeds);
-routes.post('/needs/create', NeedsController.createNeeds);
-routes.put('/needs/update/:id', NeedsController.updateNeed);
 routes.delete('/needs/delete/:id', NeedsController.deleteNeeds);
 
 module.exports = routes;
