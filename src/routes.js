@@ -51,13 +51,13 @@ routes.use(AuthMiddleware);
 //Routes for Users
 routes.put('/users/update', ValidateMiddleware(UserValidator.updateUserSchema()), UserController.updateUser);
 routes.delete('/users/delete', UserController.deleteUser);
-routes.get('/users',ValidateMiddleware(UserValidator.getUserSchema()), UserController.listUser);
+routes.get('/users', UserController.listUser);
 
 //Routes for Donations Type
 routes.post('/donationTypes/create', ValidateMiddleware(DonationTypesValidator.createDonnationTypeSchema()), DonationTypesController.createDonationType);
 routes.put('/donationTypes/update/:id', ValidateMiddleware(DonationTypesValidator.updateDonnationTypeSchema()), DonationTypesController.updateDonationType);
 routes.get('/donationTypes/listAll', DonationTypesController.listAllDonationTypes);
-routes.get('/donationTypes/:id', ValidateMiddleware(DonationTypesValidator.getDonnationTypeSchema()), DonationTypesController.listDonationTypesById);
+routes.get('/donationTypes/:id', DonationTypesController.listDonationTypesById);
 routes.delete('/donationTypes/delete/:id', DonationTypesController.deleteDonationTypes);
 
 //Routes for institutions
@@ -69,8 +69,8 @@ routes.delete('/institutions/delete/:id', InstitutionController.deleteInstitutio
 
 //Routes for needs
 routes.post('/needs/create', ValidateMiddleware(NeedsValidator.createNeedsSchema()), NeedsController.createNeeds);
-routes.put('/needs/update/:id', ValidateMiddleware(NeedsValidator.createNeedsSchema()), NeedsController.updateNeed);
-routes.get('/needs/:id', ValidateMiddleware(NeedsValidator.getNeedsSchema()), NeedsController.listNeedById);
+routes.put('/needs/update/:id', ValidateMiddleware(NeedsValidator.updateNeedsSchema()), NeedsController.updateNeed);
+routes.get('/needs/:id', NeedsController.listNeedById);
 routes.get('/getAllNeeds', NeedsController.listAllNeeds);
 routes.delete('/needs/delete/:id', NeedsController.deleteNeeds);
 
