@@ -48,7 +48,6 @@ class NeedsSchemas {
             name: Joi.string()
                 .min(1)
                 .max(100)
-                .required()
                 .messages({
                     'string.empty': 'O nome não pode estar vazio.',
                     'string.max': 'O nome deve ter no máximo 100 caracteres.',
