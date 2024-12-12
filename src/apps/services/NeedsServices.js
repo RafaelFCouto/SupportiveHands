@@ -69,7 +69,6 @@ class NeedsServices{
     }
 
     async updateNeeds(data, id){
-        console.log(id);
         const need = await Needs.findOne({
             where:{
                 id:id,
