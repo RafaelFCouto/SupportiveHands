@@ -4,7 +4,7 @@ const AuthMiddleware = require('./apps/middlewares/authentication');
 const ValidateMiddleware = require('./apps/middlewares/validate-middleware');
 
 const AuthController = require('./apps/controllers/AuthControllers');
-const AuthValidator = require('./apps/validators/authValidator');
+const AuthValidator = require('./apps/validators/auth-validators/authValidator');
 
 const UserController = require('./apps/controllers/UserControllers');
 const UserValidator = require('./apps/validators/user-validators/userValidator');
